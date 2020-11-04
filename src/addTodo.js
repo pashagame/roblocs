@@ -1,11 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, TextInput, Button } from "react-native";
 
-export const addTodo = (props) => {
+const initialTodoTitle = "новая задача";
+const buttonTitle = "Добавить";
+
+export const AddTodo = (props) => {
+  const [currentTodo, setCurrentTodo] = useState(null);
+
+  const onClick = () => {
+    props.onSubmit(currentTodo || initialTodoTitle);
+    setCurrentTodo(null);
+  };
+
   return (
     <View style={styles.block}>
-      <TextInput />
-      <Button title="добавить" />
+      <TextInput
+        onChangeText={(text) => setCurrentTodo(text)}
+        value={currentTodo}
+        placeholder={"Введите текст"}
+      />
+      <Button title={buttonTitle} onPress={onClick} />
     </View>
   );
 };
@@ -14,11 +28,11 @@ const styles = StyleSheet.create({
   block: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "conter",
+    alignItems: "center",
   },
   input: {
-    widtborh: "70%",
-    borderStyle: "solid ",
+    width: "70%",
+    borderStyle: "solid",
     borderBottomWidth: 2,
     borderBottomColor: "#3949ab",
   },

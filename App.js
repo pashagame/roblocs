@@ -1,16 +1,28 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { Navbar } from "./src/Navbar";
 import { AddTodo } from "./src/AddTodo";
+import { StatusBar } from "expo-status-bar";
 
 export default function App() {
   const [todos, setTodos] = useState([]);
 
-  // const addTodo = (title) => {
-  //  const newTodo = {
-  //   id: Date.now().toString(),
-  //   title: title,
-  // };
+  const addTodo = (title) => {
+    const newTodo = {
+      id: Date.now().toString(),
+      title: title,
+    };
+
+    setTodos((prev) => [...prev, newTodo]);
+  };
+
+  const renderItem = ({ item }) => {
+    return (
+      <View>
+        <Text>{item.title}</Text>
+      </View>
+    );
+  };
 
   //setTodos(todos.concat([ newTodo ]))
   //setTodos((prevTodos) => {
@@ -19,18 +31,17 @@ export default function App() {
   // });
   // };
 
-  setTodos((prev) => [
-    ...prev,
-    {
-      id: Date.now().toString(),
-      title: title,
-    },
-  ]);
+  console.log("todos", todos);
 
   return (
-    <View>
+    <View style={styles.rootContainer}>
       <Navbar title="Todo app!" />
       <View style={styles.container}>
+        <FlatList
+          data={todos}
+          keyExtractor={(item) => item.id}
+          renderItem={renderItem}
+        />
         <AddTodo onSubmit={addTodo} />
       </View>
     </View>
@@ -38,5 +49,11 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {},
+  rootContainer: {
+    marginTop: 50,
+    flex: 1,
+  },
+  container: {
+    flex: 1,
+  },
 });
