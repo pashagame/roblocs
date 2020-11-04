@@ -19,6 +19,14 @@ export default function App() {
   // });
   // };
 
+  setTodos((prev) => [
+    ...prev,
+    {
+      id: Date.now().toString(),
+      title: title,
+    },
+  ]);
+
   return (
     <View>
       <Navbar title="Todo app!" />
@@ -28,14 +36,6 @@ export default function App() {
     </View>
   );
 }
-
-setTodos((prev) => [
-  ...prev,
-  {
-    id: Date.now().toString(),
-    title: title,
-  },
-]);
 
 const styles = StyleSheet.create({
   container: {},

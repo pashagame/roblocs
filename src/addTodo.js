@@ -1,11 +1,11 @@
 import React from "react";
-import { View, StayleSheet, TextInput, Button } from "react-native";
+import { View, StyleSheet, TextInput, Button } from "react-native";
 
 export const addTodo = (props) => {
   return (
     <View style={styles.block}>
       <TextInput />
-      <button title="добавить" />
+      <Button title="добавить" />
     </View>
   );
 };
@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
   block: {
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "conter",
   },
   input: {
     widtborh: "70%",
