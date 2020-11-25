@@ -24,15 +24,6 @@ export default function App() {
     );
   };
 
-  //setTodos(todos.concat([ newTodo ]))
-  //setTodos((prevTodos) => {
-  // return [...prevTodos],
-  //  newTodo
-  // });
-  // };
-
-  console.log("todos", todos);
-
   return (
     <View style={styles.rootContainer}>
       <Navbar title="Todo app!" />

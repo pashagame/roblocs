@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { View, StyleSheet, TextInput, Button } from "react-native";
 
 const initialTodoTitle = "новая задача";
-const buttonTitle = "Добавить";
+const buttonTitle = "отправить";
 
-export const AddTodo = (props) => {
+export const AddTodo = ({ onSubmit }) => {
   const [currentTodo, setCurrentTodo] = useState(null);
 
   const onClick = () => {
-    props.onSubmit(currentTodo || initialTodoTitle);
+    onSubmit(currentTodo || initialTodoTitle);
     setCurrentTodo(null);
   };
 
